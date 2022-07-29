@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <style>
+        #map {
+            width: 1314px;
+            height: 927px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/LhokTimonAdmin_0.js"></script>
+        <script src="data/SHP_Jalan_Lhok_Timon_1.js"></script>
+        <script src="data/FasumFasosLhokTimon_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[4.62381606684951,95.47969599665369],[4.754073516604909,95.66445034700946]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_LhokTimonAdmin_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMOBJ'] !== null ? autolinker.link(feature.properties['NAMOBJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FCODE'] !== null ? autolinker.link(feature.properties['FCODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REMARK'] !== null ? autolinker.link(feature.properties['REMARK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['METADATA'] !== null ? autolinker.link(feature.properties['METADATA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SRS_ID'] !== null ? autolinker.link(feature.properties['SRS_ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDBBPS'] !== null ? autolinker.link(feature.properties['KDBBPS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDCBPS'] !== null ? autolinker.link(feature.properties['KDCBPS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDCPUM'] !== null ? autolinker.link(feature.properties['KDCPUM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDEBPS'] !== null ? autolinker.link(feature.properties['KDEBPS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDEPUM'] !== null ? autolinker.link(feature.properties['KDEPUM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDPBPS'] !== null ? autolinker.link(feature.properties['KDPBPS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDPKAB'] !== null ? autolinker.link(feature.properties['KDPKAB'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDPPUM'] !== null ? autolinker.link(feature.properties['KDPPUM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LUASWH'] !== null ? autolinker.link(feature.properties['LUASWH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPADM'] !== null ? autolinker.link(feature.properties['TIPADM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WADMKC'] !== null ? autolinker.link(feature.properties['WADMKC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WADMKD'] !== null ? autolinker.link(feature.properties['WADMKD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WADMKK'] !== null ? autolinker.link(feature.properties['WADMKK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WADMPR'] !== null ? autolinker.link(feature.properties['WADMPR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WIADKC'] !== null ? autolinker.link(feature.properties['WIADKC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WIADKK'] !== null ? autolinker.link(feature.properties['WIADKK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WIADPR'] !== null ? autolinker.link(feature.properties['WIADPR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WIADKD'] !== null ? autolinker.link(feature.properties['WIADKD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['UUPP'] !== null ? autolinker.link(feature.properties['UUPP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATUS_BAT'] !== null ? autolinker.link(feature.properties['STATUS_BAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LhokTimonAdmin_0_0(feature) {
+            switch(String(feature.properties['NAMOBJ'])) {
+                case 'Dusun 1 Rigaih':
+                    return {
+                pane: 'pane_LhokTimonAdmin_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,96,190,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Dusun 2 Gunung Teungoh':
+                    return {
+                pane: 'pane_LhokTimonAdmin_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(94,212,104,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Dusun 3 Jabi':
+                    return {
+                pane: 'pane_LhokTimonAdmin_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,186,118,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_LhokTimonAdmin_0');
+        map.getPane('pane_LhokTimonAdmin_0').style.zIndex = 400;
+        map.getPane('pane_LhokTimonAdmin_0').style['mix-blend-mode'] = 'normal';
+        var layer_LhokTimonAdmin_0 = new L.geoJson(json_LhokTimonAdmin_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LhokTimonAdmin_0',
+            layerName: 'layer_LhokTimonAdmin_0',
+            pane: 'pane_LhokTimonAdmin_0',
+            onEachFeature: pop_LhokTimonAdmin_0,
+            style: style_LhokTimonAdmin_0_0,
+        });
+        bounds_group.addLayer(layer_LhokTimonAdmin_0);
+        map.addLayer(layer_LhokTimonAdmin_0);
+        function pop_SHP_Jalan_Lhok_Timon_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SHP_Jalan_Lhok_Timon_1_0(feature) {
+            switch(String(feature.properties['Keterangan'])) {
+                case 'Jalan Lokal':
+                    return {
+                pane: 'pane_SHP_Jalan_Lhok_Timon_1',
+                opacity: 1,
+                color: 'rgba(183,205,41,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Jalan Utama':
+                    return {
+                pane: 'pane_SHP_Jalan_Lhok_Timon_1',
+                opacity: 1,
+                color: 'rgba(221,0,4,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_SHP_Jalan_Lhok_Timon_1');
+        map.getPane('pane_SHP_Jalan_Lhok_Timon_1').style.zIndex = 401;
+        map.getPane('pane_SHP_Jalan_Lhok_Timon_1').style['mix-blend-mode'] = 'normal';
+        var layer_SHP_Jalan_Lhok_Timon_1 = new L.geoJson(json_SHP_Jalan_Lhok_Timon_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SHP_Jalan_Lhok_Timon_1',
+            layerName: 'layer_SHP_Jalan_Lhok_Timon_1',
+            pane: 'pane_SHP_Jalan_Lhok_Timon_1',
+            onEachFeature: pop_SHP_Jalan_Lhok_Timon_1,
+            style: style_SHP_Jalan_Lhok_Timon_1_0,
+        });
+        bounds_group.addLayer(layer_SHP_Jalan_Lhok_Timon_1);
+        map.addLayer(layer_SHP_Jalan_Lhok_Timon_1);
+        function pop_FasumFasosLhokTimon_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nama</th>\
+                        <td>' + (feature.properties['Nama'] !== null ? autolinker.link(feature.properties['Nama'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMOBJ'] !== null ? autolinker.link(feature.properties['NAMOBJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Keterangan</th>\
+                        <td>' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Keterang_1'] !== null ? autolinker.link(feature.properties['Keterang_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FasumFasosLhokTimon_2_0(feature) {
+            switch(String(feature.properties['Nama'])) {
+                case 'Docking (Tempat Perbaikan kapal Nelayan)':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,194,225,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gedung Kesenian':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(141,208,110,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gedung PKK':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(206,214,117,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gedung Serbaguna':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(34,218,114,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kantor Desa':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(100,21,219,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kantor KUA':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,39,79,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kantor Pertanian':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,27,141,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lapangan Bola':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,222,229,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lapangan Voly':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(93,81,202,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Makam Cut Muara Pueteh':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(131,136,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Masjid Nurul Amilin':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,160,88,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Masjid Syaiquna':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,17,206,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mushalla':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,222,178,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mushalla Al Ikhlas':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(147,35,239,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pabrik Tahu & Tempe':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,209,146,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pangkalan Boat':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(180,40,240,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pasar Sehat':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(14,230,76,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pelabuhan':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,48,110,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pelabuhan Wisata':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(161,227,102,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Poski':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,115,213,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Puskesdes':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,120,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pustu':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(131,100,224,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SDN 11 Setia b=Bahkti':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,171,69,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SDN 4 Setia Bhakti':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(108,174,207,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SMAN 1 Setia Bhakti':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,234,117,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SMPN 4 Setia Bhakti':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,110,78,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Tanah Dusun Jabi':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(95,228,212,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TK Pocut Ma\'in':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,32,22,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TK Selanga Dara':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(50,128,207,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Toko Desa':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(55,214,23,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TPA':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,86,201,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TPA Babul Huda':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(141,175,238,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TPA Nurul':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(211,49,162,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TPI':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,47,66,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TPU':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,239,54,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UKM Pasar Rabu':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(169,226,77,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Wisata Pantai Jabi':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,135,233,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Wisata Pantai Rigaih':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,208,91,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Wisata Rigaih':
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,237,81,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_FasumFasosLhokTimon_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,210,118,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_FasumFasosLhokTimon_2');
+        map.getPane('pane_FasumFasosLhokTimon_2').style.zIndex = 402;
+        map.getPane('pane_FasumFasosLhokTimon_2').style['mix-blend-mode'] = 'normal';
+        var layer_FasumFasosLhokTimon_2 = new L.geoJson(json_FasumFasosLhokTimon_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FasumFasosLhokTimon_2',
+            layerName: 'layer_FasumFasosLhokTimon_2',
+            pane: 'pane_FasumFasosLhokTimon_2',
+            onEachFeature: pop_FasumFasosLhokTimon_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FasumFasosLhokTimon_2_0(feature));
+            },
+        });
+        var cluster_FasumFasosLhokTimon_2 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_FasumFasosLhokTimon_2.addLayer(layer_FasumFasosLhokTimon_2);
+
+        bounds_group.addLayer(layer_FasumFasosLhokTimon_2);
+        cluster_FasumFasosLhokTimon_2.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Fasum & Fasos Lhok Timon<br /><table><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_DockingTempatPerbaikankapalNelayan0.png" /></td><td>Docking (Tempat Perbaikan kapal Nelayan)</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_GedungKesenian1.png" /></td><td>Gedung Kesenian</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_GedungPKK2.png" /></td><td>Gedung PKK</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_GedungSerbaguna3.png" /></td><td>Gedung Serbaguna</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_KantorDesa4.png" /></td><td>Kantor Desa</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_KantorKUA5.png" /></td><td>Kantor KUA</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_KantorPertanian6.png" /></td><td>Kantor Pertanian</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_LapanganBola7.png" /></td><td>Lapangan Bola</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_LapanganVoly8.png" /></td><td>Lapangan Voly</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_MakamCutMuaraPueteh9.png" /></td><td>Makam Cut Muara Pueteh</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_MasjidNurulAmilin10.png" /></td><td>Masjid Nurul Amilin</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_MasjidSyaiquna11.png" /></td><td>Masjid Syaiquna</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_Mushalla12.png" /></td><td>Mushalla</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_MushallaAlIkhlas13.png" /></td><td>Mushalla Al Ikhlas</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_PabrikTahuTempe14.png" /></td><td>Pabrik Tahu & Tempe</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_PangkalanBoat15.png" /></td><td>Pangkalan Boat</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_PasarSehat16.png" /></td><td>Pasar Sehat</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_Pelabuhan17.png" /></td><td>Pelabuhan</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_PelabuhanWisata18.png" /></td><td>Pelabuhan Wisata</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_Poski19.png" /></td><td>Poski</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_Puskesdes20.png" /></td><td>Puskesdes</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_Pustu21.png" /></td><td>Pustu</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_SDN11SetiabBahkti22.png" /></td><td>SDN 11 Setia b=Bahkti</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_SDN4SetiaBhakti23.png" /></td><td>SDN 4 Setia Bhakti</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_SMAN1SetiaBhakti24.png" /></td><td>SMAN 1 Setia Bhakti</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_SMPN4SetiaBhakti25.png" /></td><td>SMPN 4 Setia Bhakti</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TanahDusunJabi26.png" /></td><td>Tanah Dusun Jabi</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TKPocutMain27.png" /></td><td>TK Pocut Ma\'in</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TKSelangaDara28.png" /></td><td>TK Selanga Dara</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TokoDesa29.png" /></td><td>Toko Desa</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TPA30.png" /></td><td>TPA</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TPABabulHuda31.png" /></td><td>TPA Babul Huda</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TPANurul32.png" /></td><td>TPA Nurul</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TPI33.png" /></td><td>TPI</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_TPU34.png" /></td><td>TPU</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_UKMPasarRabu35.png" /></td><td>UKM Pasar Rabu</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_WisataPantaiJabi36.png" /></td><td>Wisata Pantai Jabi</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_WisataPantaiRigaih37.png" /></td><td>Wisata Pantai Rigaih</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_WisataRigaih38.png" /></td><td>Wisata Rigaih</td></tr><tr><td style="text-align: center;"><img src="legend/FasumFasosLhokTimon_2_39.png" /></td><td></td></tr></table>': cluster_FasumFasosLhokTimon_2,'SHP_Jalan_Lhok_Timon<br /><table><tr><td style="text-align: center;"><img src="legend/SHP_Jalan_Lhok_Timon_1_JalanLokal0.png" /></td><td>Jalan Lokal</td></tr><tr><td style="text-align: center;"><img src="legend/SHP_Jalan_Lhok_Timon_1_JalanUtama1.png" /></td><td>Jalan Utama</td></tr></table>': layer_SHP_Jalan_Lhok_Timon_1,'Lhok Timon Admin<br /><table><tr><td style="text-align: center;"><img src="legend/LhokTimonAdmin_0_Dusun1Rigaih0.png" /></td><td>Dusun 1 Rigaih</td></tr><tr><td style="text-align: center;"><img src="legend/LhokTimonAdmin_0_Dusun2GunungTeungoh1.png" /></td><td>Dusun 2 Gunung Teungoh</td></tr><tr><td style="text-align: center;"><img src="legend/LhokTimonAdmin_0_Dusun3Jabi2.png" /></td><td>Dusun 3 Jabi</td></tr></table>': layer_LhokTimonAdmin_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
